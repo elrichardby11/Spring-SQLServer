@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Setter
 @Getter
 @Entity
@@ -28,5 +30,13 @@ public class Users {
     @ManyToOne
     @JoinColumn(name = "department")
     private Department department;
+
+    @ManyToMany
+    @JoinTable(
+            name = "assignments",
+            joinColumns = @JoinColumn(name = "id_user"),
+            inverseJoinColumns = @JoinColumn(name = "id_task")
+    )
+    private List<Task> tasks;
 
 }
